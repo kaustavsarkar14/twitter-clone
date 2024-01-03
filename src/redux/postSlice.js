@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit"
 const postSlice = createSlice({
     name:"posts",
     initialState : {
-        allPosts: []
+        allPosts: [],
+        isPostsLoading : true,
     },
     reducers: {
         addPosts : (state, action)=>{
             state.allPosts = action.payload
+            state.isPostsLoading = false
         },
     }
 })

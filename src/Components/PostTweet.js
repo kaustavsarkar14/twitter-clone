@@ -79,7 +79,7 @@ const PostTweet = () => {
             id="fileInput"
             className="hidden"
             type="file"
-            accept="image/jpeg, image/png, image/gif, image/webp"
+            accept="image/jpeg, image/png, image/gif, image/webp, text/html"
             onChange={handleImageUpload}
           />
           <button

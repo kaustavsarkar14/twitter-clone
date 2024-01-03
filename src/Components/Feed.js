@@ -6,9 +6,8 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const Feed = () => {
   const { allPosts, isPostsLoading } = useSelector((state) => state.posts);
-  console.log(allPosts);
   return (
-    <div className="w-[40%] border-l border-r border-gray-800">
+    <div className="w-screen md:w-[40%] border-l border-r border-gray-800 ">
       <PostTweet />
       {isPostsLoading ? (
         <div className="flex justify-center pt-3" >

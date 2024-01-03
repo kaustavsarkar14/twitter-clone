@@ -5,11 +5,10 @@ import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneR
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import Button from "./Button";
 
 const Navbar = () => {
   return (
-    <div className="w-[30%] flex justify-end ">
+    <div className="w-[26%] flex justify-end sticky top-0 left-0 h-screen">
       <div className="w-[65%] flex justify-start p-2 flex-col  text-xl mr-3">
         <div className="p-2">
           <img
@@ -44,7 +43,7 @@ const Navbar = () => {
           <PersonOutlineOutlinedIcon sx={{ height: "2rem", width: "2rem" }} />
           <p>Profile</p>
         </div>
-        <Button text="Post" />
+        <button className="bg-blue-500 rounded-full p-2 font-bold" >Post</button>
       </div>
     </div>
   );

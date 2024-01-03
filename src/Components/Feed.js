@@ -7,7 +7,7 @@ const Feed = () => {
   const allPosts = useSelector((state) => state.posts.allPosts);
   console.log(allPosts);
   return (
-    <div className="w-[50%] border-l border-r border-gray-800">
+    <div className="w-[40%] border-l border-r border-gray-800">
       <PostTweet />
       <div>
         {allPosts.map((post) => (

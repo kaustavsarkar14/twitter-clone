@@ -41,10 +41,12 @@ const Navbar = () => {
         <div className="p-2">
           <img className="w-[2rem]" src={LOGO_URL} alt="" />
         </div>
+        <Link to={"/"}>
         <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3">
           <HomeRoundedIcon sx={{ height: "2rem", width: "2rem" }} />
           <p>Home</p>
         </div>
+        </Link>
         <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3">
           <SearchRoundedIcon sx={{ height: "2rem", width: "2rem" }} />
           <p>Explore</p>

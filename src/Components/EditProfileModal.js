@@ -63,12 +63,12 @@ export default function EditProfileModal({ profileData }) {
     <div>
       <button
         onClick={handleOpen}
-        className="font-bold border border-white py-1 px-2 rounded-full mb-10"
+        className="font-bold border border-white py-1 px-2 rounded-full md:mb-10 -mb-3"
       >
         Edit Profile
       </button>
       <Modal open={open} onClose={handleClose}>
-        <div className="bg-black border border-gray-800 rounded-3xl w-[50%] h-[70%] absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] p-6 flex flex-col gap-8 ">
+        <div className="bg-black border border-gray-800 rounded-3xl md:w-[50%] md:h-[70%] absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] p-6 flex flex-col gap-8 w-[90%] h-[70vh]">
           <div className="w-full h-36 relative">
             <input
               type="file"
@@ -91,7 +91,7 @@ export default function EditProfileModal({ profileData }) {
               />
             </label>
           </div>
-          <div className="flex">
+          <div className="flex flex-col md:flex-row items-center ">
             <input
               type="file"
               id="photoInput"

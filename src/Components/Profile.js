@@ -40,7 +40,7 @@ const Profile = () => {
   return (
     <div className='"w-screen md:w-[40%] border-l border-r border-gray-800'>
       <div className="flex flex-col">
-        <div className="bg-gray-800 h-48">
+        <div className="bg-gray-800 md:h-48 h-32">
           {profileData?.bannerURL && (
             <img
               src={profileData.bannerURL}
@@ -54,7 +54,7 @@ const Profile = () => {
               <div className="flex justify-between items-end mb-3">
                 <img
                   src={profileData.photoURL}
-                  className="rounded-full shadow-2xl w-32 h-32 object-cover"
+                  className="rounded-full shadow-2xl md:w-32 w-20 md:h-32 h-20 object-cover"
                   alt=""
                 />
                 {profileData.uid == auth.currentUser.uid && (

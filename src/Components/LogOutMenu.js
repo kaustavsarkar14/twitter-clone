@@ -12,14 +12,14 @@ export default function LogOutMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (e) => {
-    e.preventDefault()
     setAnchorEl(null);
+  };
+
+  const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
+      .then(() => {})
       .catch((error) => {
-        // An error happened.
+        console.log(error);
       });
   };
 
@@ -32,7 +32,7 @@ export default function LogOutMenu() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <MoreHorizIcon sx={{ color: "white" }} />
+        <MoreHorizIcon sx={{ color: "white", cursor:"pointer" }} />
       </div>
       <Menu
         id="demo-positioned-menu"
@@ -49,7 +49,7 @@ export default function LogOutMenu() {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleSignOut}>Logout</MenuItem>
       </Menu>
     </div>
   );

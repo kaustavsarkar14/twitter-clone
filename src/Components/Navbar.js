@@ -42,10 +42,10 @@ const Navbar = () => {
           <img className="w-[2rem]" src={LOGO_URL} alt="" />
         </div>
         <Link to={"/"}>
-        <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3">
-          <HomeRoundedIcon sx={{ height: "2rem", width: "2rem" }} />
-          <p>Home</p>
-        </div>
+          <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3">
+            <HomeRoundedIcon sx={{ height: "2rem", width: "2rem" }} />
+            <p>Home</p>
+          </div>
         </Link>
         <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3">
           <SearchRoundedIcon sx={{ height: "2rem", width: "2rem" }} />
@@ -72,13 +72,15 @@ const Navbar = () => {
         <button className="bg-blue-500 rounded-full p-2 font-bold hidden md:block ">
           Post
         </button>
-        <Link to={'/profile/'+auth.currentUser?.uid}>
-          <div className="relative bottom-4 hover:bg-gray-900 w-[100%] p-3 mt-[40vh] rounded-full flex gap-3">
+        <div className="relative bottom-4 hover:bg-gray-900 w-[100%] p-3 mt-[40vh] rounded-full flex gap-3">
+          <Link to={"/profile/" + auth.currentUser?.uid}>
             <img
               src={auth.currentUser?.photoURL}
-              className="md:h-10 md:w-10 rounded-full h-6 w-6"
+              className="md:h-10 md:w-10 rounded-full object-cover h-6 w-6"
               alt=""
             />
+          </Link>
+          <Link to={"/profile/" + auth.currentUser?.uid}>
             <div className="flex flex-col">
               <h2 className="text-sm font-semibold">
                 {auth.currentUser?.displayName}
@@ -87,9 +89,9 @@ const Navbar = () => {
                 @{auth.currentUser?.email.split("@")[0]}
               </p>
             </div>
-            <LogOutMenu />
-          </div>
-        </Link>
+          </Link>
+          <LogOutMenu />
+        </div>
       </div>
     </div>
   );

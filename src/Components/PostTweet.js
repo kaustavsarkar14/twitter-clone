@@ -5,6 +5,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import BrokenImageOutlinedIcon from "@mui/icons-material/BrokenImageOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import LoadingSpinner from "./LoadingSpinner";
+import Toast from "./Toast";
+import toast from "react-hot-toast";
 
 const PostTweet = () => {
   const [title, setTitle] = useState("");
@@ -36,9 +38,11 @@ const PostTweet = () => {
     setTitle("");
     setUploadedImageURL(null);
     setIsPosting(false)
+    toast.success('Your post was sent!!')
   };
   return (
     <div className="flex gap-2 p-3 border-b border-gray-800 mt-2">
+      <Toast/>
       <img
         src={auth?.currentUser?.photoURL}
         className="h-10 w-10 rounded-full object-cover"

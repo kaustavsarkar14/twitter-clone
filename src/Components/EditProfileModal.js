@@ -6,6 +6,8 @@ import { auth, db, storage } from "../firebase";
 import LoadingSpinner from "./LoadingSpinner";
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
+import Toast from "./Toast";
 
 export default function EditProfileModal({ profileData }) {
   const [open, setOpen] = useState(false);
@@ -18,6 +20,8 @@ export default function EditProfileModal({ profileData }) {
   const [photoURL, setPhotoURL] = useState(profileData.photoURL);
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);
   const [isBannerUploading, setIsBannerUploading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false)
+
   const handleProfileImageUpload = async (e) => {
     setIsPhotoUploading(true);
     const file = e.target.files[0];
@@ -40,9 +44,9 @@ export default function EditProfileModal({ profileData }) {
   };
 
   const handleUpdateProfile = async () => {
+    setIsSaving(true)
     const usersRef = collection(db, "users");
     const q = query(usersRef, where("uid", "==", auth.currentUser.uid));
-
     try {
       const querySnapshot = await getDocs(q);
       const profileDoc = querySnapshot.docs[0];
@@ -57,6 +61,8 @@ export default function EditProfileModal({ profileData }) {
     } catch (error) {
       console.error("Error updating profile:", error);
     }
+    setIsSaving(false)
+    toast.success('Profile updated!!')
   };
 
   return (
@@ -138,14 +144,16 @@ export default function EditProfileModal({ profileData }) {
               />
               <button
                 onClick={handleUpdateProfile}
-                className="bg-white text-black px-4 py-1 font-bold rounded-full absolute bottom-6 right-6"
+                className="bg-white text-black px-4 py-1 font-bold rounded-full absolute bottom-6 right-6 disabled:opacity-50"
+                disabled={isSaving}
               >
-                Save
+                {isSaving?"Saving...":"Save"}
               </button>
             </div>
           </div>
         </div>
       </Modal>
+      <Toast/>
     </div>
   );
 }

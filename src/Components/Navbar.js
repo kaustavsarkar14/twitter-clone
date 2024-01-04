@@ -8,6 +8,9 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import { LOGO_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMobileNav } from "../redux/appSlice";
+import { auth } from "../firebase";
+import LogOutMenu from "./LogOutMenu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -34,7 +37,7 @@ const Navbar = () => {
         (isMobileNavOpen ? "flex" : "hidden")
       }
     >
-      <div className="w-[65%] flex justify-start p-2 flex-col  text-xl mr-3">
+      <div className="w-[100%] md:w-[65%] flex justify-start p-2 flex-col  text-xl mr-3">
         <div className="p-2">
           <img className="w-[2rem]" src={LOGO_URL} alt="" />
         </div>
@@ -67,6 +70,24 @@ const Navbar = () => {
         <button className="bg-blue-500 rounded-full p-2 font-bold hidden md:block ">
           Post
         </button>
+        <Link to={'/profile/'+auth.currentUser?.uid}>
+          <div className="relative bottom-4 hover:bg-gray-900 w-[100%] p-3 mt-[40vh] rounded-full flex gap-3">
+            <img
+              src={auth.currentUser?.photoURL}
+              className="md:h-10 md:w-10 rounded-full h-6 w-6"
+              alt=""
+            />
+            <div className="flex flex-col">
+              <h2 className="text-sm font-semibold">
+                {auth.currentUser?.displayName}
+              </h2>
+              <p className="text-sm opacity-65">
+                @{auth.currentUser?.email.split("@")[0]}
+              </p>
+            </div>
+            <LogOutMenu />
+          </div>
+        </Link>
       </div>
     </div>
   );

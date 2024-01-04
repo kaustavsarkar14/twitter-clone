@@ -4,19 +4,17 @@ import Login from "./Pages/Login";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import ProfilePage from "./Pages/ProfilePage";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log("-->>>", user);
       if (user) {
-        console.log("user", user);
-        if (location.pathname === "/login") 
+        // if (location.pathname === "/login") 
         navigate("/");
       } else {
-        console.log("no user");
         navigate("/login");
       }
     });
@@ -27,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/:username" element={<h1>Profile</h1>} />
+        <Route path="/profile/:userId" element={<ProfilePage/>} />
       </Routes>
     </div>
   );

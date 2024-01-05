@@ -65,10 +65,12 @@ const Navbar = () => {
           <BookmarkBorderOutlinedIcon sx={{ height: "2rem", width: "2rem" }} />
           <p>Bookmarks</p>
         </div>
-        <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3 mb-2">
-          <PersonOutlineOutlinedIcon sx={{ height: "2rem", width: "2rem" }} />
-          <p>Profile</p>
-        </div>
+        <Link to={"/profile/" + auth.currentUser?.uid}>
+          <div className="flex hover:bg-gray-900 hover:cursor-pointer transition-all duration-200 rounded-full p-2 gap-3 mb-2">
+            <PersonOutlineOutlinedIcon sx={{ height: "2rem", width: "2rem" }} />
+            <p>Profile</p>
+          </div>
+        </Link>
         <button className="bg-blue-500 rounded-full p-2 font-bold hidden md:block ">
           Post
         </button>

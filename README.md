@@ -1,6 +1,11 @@
 # Twitter Clone
 
 ## Tech Stack 
+1. React Js
+2. Firebase
+3. Tailwind CSS
+4. Material UI
+
 
 
 # Getting Started with Create React App

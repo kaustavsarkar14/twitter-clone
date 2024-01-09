@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TweetStats from "./TweetStats";
 
 const Tweet = ({ tweetData }) => {
   return (
@@ -13,7 +14,7 @@ const Tweet = ({ tweetData }) => {
         />
         </div>
       </Link>
-      <div className="flex flex-col gap-2 break-words min-w-0">
+      <div className="w-full flex flex-col gap-2 break-words min-w-0">
         <h2 className="font-bold">{tweetData.authorName}</h2>
         <h3 className="">{tweetData.title}</h3>
         <img
@@ -21,6 +22,7 @@ const Tweet = ({ tweetData }) => {
           alt=""
           className="md:w-[80%] w-[100%] rounded-2xl"
         />
+      <TweetStats tweetId={tweetData.id} />
       </div>
     </div>
   );

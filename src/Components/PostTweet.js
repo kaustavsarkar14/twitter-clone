@@ -12,7 +12,7 @@ const PostTweet = () => {
   const [title, setTitle] = useState("");
   const [uploadedImageURL, setUploadedImageURL] = useState(null);
   const [isImageUploading, setIsImageUploading] = useState(false);
-  const [isPosting, setIsPosting] = useState(false) 
+  const [isPosting, setIsPosting] = useState(false);
 
   const handleImageUpload = async (e) => {
     setIsImageUploading(true);
@@ -26,7 +26,7 @@ const PostTweet = () => {
   };
 
   const handlePost = async () => {
-    setIsPosting(true)
+    setIsPosting(true);
     const docRef = await addDoc(collection(db, "posts"), {
       title: title,
       imageURL: uploadedImageURL,
@@ -37,12 +37,12 @@ const PostTweet = () => {
     });
     setTitle("");
     setUploadedImageURL(null);
-    setIsPosting(false)
-    toast.success('Your post was sent!!')
+    setIsPosting(false);
+    toast.success("Your post was sent!!");
   };
   return (
     <div className="flex gap-2 p-3 border-b border-gray-800 mt-2">
-      <Toast/>
+      <Toast />
       <img
         src={auth?.currentUser?.photoURL}
         className="h-10 w-10 rounded-full object-cover"
@@ -60,7 +60,7 @@ const PostTweet = () => {
           <div className="h-20 w-20 relative">
             {isImageUploading ? (
               <div>
-                <LoadingSpinner/>
+                <LoadingSpinner />
               </div>
             ) : (
               <>
@@ -94,9 +94,7 @@ const PostTweet = () => {
             className="bg-blue-500 rounded-full py-2 font-bold px-5 disabled:opacity-50"
             disabled={(!uploadedImageURL && title == "") || isPosting}
           >
-            {
-              isPosting? "Posting...":"Post"
-            }
+            {isPosting ? "Posting..." : "Post"}
           </button>
         </div>
       </div>

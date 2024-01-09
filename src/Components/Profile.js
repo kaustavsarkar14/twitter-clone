@@ -11,14 +11,17 @@ import { useParams } from "react-router-dom";
 import { auth, db } from "../firebase";
 import OwnTweets from "./OwnTweets";
 import EditProfileModal from "./EditProfileModal";
+import { useDispatch } from "react-redux";
+import { closeMobileNav } from "../redux/appSlice";
 
 const Profile = () => {
   const { userId } = useParams();
   const [profileData, setProfileData] = useState(null);
-
+  const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(closeMobileNav())
     fetchProfileData();
-  }, []);
+  }, [userId]);
 
   const fetchProfileData = async () => {
     const usersRef = collection(db, "users");

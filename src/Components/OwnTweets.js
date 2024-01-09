@@ -11,7 +11,7 @@ const OwnTweets = () => {
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     fetchOwnTweets();
-  }, []);
+  }, [userId]);
   const fetchOwnTweets = async () => {
     const postsRef = collection(db, "posts");
     const q = query(postsRef, where("authorUID", "==", userId), orderBy("createdAt", "desc"));

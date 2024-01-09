@@ -6,7 +6,7 @@ import MobileHeader from "../Components/MobileHeader";
 
 const HomePage = () => {
   useAllPosts();
-
+  
   return (
     <div className="flex flex-col md:flex-row">
       <MobileHeader/>

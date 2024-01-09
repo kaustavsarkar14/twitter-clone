@@ -1,3 +1,14 @@
+# Twitter Clone
+
+## Tech Stack 
+1. React Js
+2. Firebase
+3. Tailwind CSS
+4. Material UI
+5. React Router Dom
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

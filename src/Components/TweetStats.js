@@ -42,19 +42,21 @@ const TweetStats = ({ tweetId }) => {
     }
   };
   const likeTweet = async () => {
+    setIsLiked(true);
     try {
       const querySnapshot = await getDocs(q);
       const tweetStatsDoc = querySnapshot.docs[0];
       const likes = tweetStatsDoc.data().likes;
       const tweetDocRef = tweetStatsDoc.ref;
       await updateDoc(tweetDocRef, { likes: [...likes, auth.currentUser.uid] });
-      setIsLiked(true);
       setLikeCount((likeCount) => likeCount + 1);
     } catch (error) {
       console.error("Error updating profile:", error);
+      setIsLiked(false)
     }
   };
   const unlikeTweet = async () => {
+    setIsLiked(false);
     try {
       const querySnapshot = await getDocs(q);
       const tweetStatsDoc = querySnapshot.docs[0];
@@ -63,10 +65,10 @@ const TweetStats = ({ tweetId }) => {
       await updateDoc(tweetDocRef, {
         likes: likes.filter((id) => id != auth.currentUser.uid),
       });
-      setIsLiked(false);
       setLikeCount((likeCount) => likeCount - 1);
     } catch (error) {
       console.error("Error updating profile:", error);
+      setIsLiked(true)
     }
   };
   return (

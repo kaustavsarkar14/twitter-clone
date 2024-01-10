@@ -17,7 +17,6 @@ const Login = () => {
         console.log(querySnapshot)
         querySnapshot.forEach((doc) => {
           console.log(doc.id, " => ", doc.data());
-          // Process the data as needed
         });
       } else {
         console.log("No user found with the UID:", uid);
@@ -27,15 +26,22 @@ const Login = () => {
           photoURL:result.user.photoURL,
           bannerURL:null,
           bio:'',
-          followers:0,
-          following:0,
           uid: uid,
         });
       }
     } catch (error) {
       console.error("Error fetching user:", error);
     }
+    try{
+      await addDoc(collection(db, "follow"), {
+        userId: auth.currentUser.uid,
+        followers: [],
+        following: [],
+      });
+    }
+    catch(err){
 
+    }
   };
   return (
     <div>

@@ -2,14 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TweetStats from "./TweetStats";
 import SyncRoundedIcon from "@mui/icons-material/SyncRounded";
+import TweetMenu from "./TweetMenu";
 
 const Tweet = ({ tweetData }) => {
   return (
-    <div className="flex flex-col gap-2 p-3 border-b border-gray-800">
+    <div className="flex flex-col gap-2 p-3 relative border-b border-gray-800">
+        <div className="absolute right-3">
+          <TweetMenu tweetData={tweetData} />
+        </div>
       {tweetData.isRetweet && (
         <div className="pl-6">
           <p className="text-gray-500 text-sm flex gap-2 items-center">
-          <SyncRoundedIcon sx={{width:"1.2rem"}} />
+            <SyncRoundedIcon sx={{ width: "1.2rem" }} />
             {tweetData.retweeterName} retweeted
           </p>
         </div>

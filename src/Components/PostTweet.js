@@ -35,6 +35,12 @@ const PostTweet = () => {
       authorPhotoURL: auth.currentUser.photoURL,
       authorName: auth.currentUser.displayName,
     });
+    await addDoc(collection(db, "stats"), {
+      tweetId: docRef.id,
+      likes: [],
+      retweets: [],
+      comments: [],
+    });
     setTitle("");
     setUploadedImageURL(null);
     setIsPosting(false);

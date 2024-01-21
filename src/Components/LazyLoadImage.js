@@ -8,11 +8,11 @@ const LazyLoadImage = ({ imgURL, height, width }) => {
 
   const aspectRatio = (height / width) * 100;
   console.log(aspectRatio);
+  const imageWidth = aspectRatio < 100 ? "w-[100%]" : "md:w-[80%] w-[95%]";
+  const imageHeight = aspectRatio < 100 ? "20rem" : "30rem";
   return (
     <div
-      className={`md:w-[${aspectRatio < 100 ? "100%" : "80%"}] w-[${
-        aspectRatio < 100 ? "100%" : "95%"
-      }] h-[${aspectRatio<100? "20rem":"30rem"}] rounded-2xl overflow-hidden border-gray-800 border relative`}
+      className={`${imageWidth} h-[${imageHeight}] rounded-2xl overflow-hidden border-gray-800 border relative`}
     >
       <div
         className={`bg-gray-950 animate-pulse transition-opacity duration-1000 ease-in-out ${

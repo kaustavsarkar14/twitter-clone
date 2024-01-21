@@ -7,29 +7,55 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import LoadingSpinner from "./LoadingSpinner";
 import Toast from "./Toast";
 import toast from "react-hot-toast";
+import LoadProfileImage from "./LoadProfileImage";
 
 const PostTweet = () => {
   const [title, setTitle] = useState("");
   const [uploadedImageURL, setUploadedImageURL] = useState(null);
+  const [uploadedImageDimensions, setUploadedImageDimensions] = useState({
+    height: 0,
+    width: 0,
+  });
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
 
   const handleImageUpload = async (e) => {
     setIsImageUploading(true);
     const file = e.target.files[0];
-    const fileName = `${Date.now()}-${file.name}`;
-    const storageRef = ref(storage, fileName);
-    const snapshot = await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(snapshot.ref);
-    setUploadedImageURL(downloadURL);
-    setIsImageUploading(false);
-  };
 
+    // Create a URL for the file
+    const fileURL = URL.createObjectURL(file);
+
+    // Create an Image object
+    const img = new Image();
+    img.onload = async () => {
+      // Now the image is loaded, you can access naturalHeight
+
+      setUploadedImageDimensions({
+        height: img.naturalHeight,
+        width: img.naturalWidth,
+      });
+      // Continue with file upload
+      const fileName = `${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, fileName);
+      const snapshot = await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      setUploadedImageURL(downloadURL);
+      setIsImageUploading(false);
+
+      // Revoke the created URL to avoid memory leaks
+      URL.revokeObjectURL(fileURL);
+    };
+    // Set the src to the created URL
+    img.src = fileURL;
+  };
   const handlePost = async () => {
     setIsPosting(true);
     const docRef = await addDoc(collection(db, "posts"), {
       title: title,
       imageURL: uploadedImageURL,
+      height: uploadedImageDimensions.height,
+      width:uploadedImageDimensions.width,
       createdAt: new Date(),
       authorUID: auth.currentUser.uid,
       authorPhotoURL: auth.currentUser.photoURL,
@@ -49,11 +75,7 @@ const PostTweet = () => {
   return (
     <div className="flex gap-2 p-3 border-b border-gray-800 mt-2">
       <Toast />
-      <img
-        src={auth?.currentUser?.photoURL}
-        className="h-10 w-10 rounded-full object-cover"
-        alt=""
-      />
+      <LoadProfileImage imgURL={auth?.currentUser?.photoURL} />
       <div className="flex flex-col w-full gap-4">
         <input
           type="text"

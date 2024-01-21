@@ -11,6 +11,7 @@ import { closeMobileNav } from "../redux/appSlice";
 import { auth } from "../firebase";
 import LogOutMenu from "./LogOutMenu";
 import { Link } from "react-router-dom";
+import LoadProfileImage from "./LoadProfileImage";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -76,11 +77,7 @@ const Navbar = () => {
         </button>
         <div className="relative bottom-4 hover:bg-gray-900 w-[100%] p-3 mt-[40vh] rounded-full flex gap-3">
           <Link to={"/profile/" + auth.currentUser?.uid}>
-            <img
-              src={auth.currentUser?.photoURL}
-              className="md:h-10 md:w-10 rounded-full object-cover h-6 w-6"
-              alt=""
-            />
+            <LoadProfileImage imgURL={auth.currentUser?.photoURL} />
           </Link>
           <Link to={"/profile/" + auth.currentUser?.uid}>
             <div className="flex flex-col">

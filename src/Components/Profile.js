@@ -14,6 +14,7 @@ import OwnTweets from "./OwnTweets";
 import EditProfileModal from "./EditProfileModal";
 import { useDispatch } from "react-redux";
 import { closeMobileNav } from "../redux/appSlice";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 const Profile = () => {
   const { userId } = useParams();
@@ -187,21 +188,32 @@ const Profile = () => {
                   </button>
                 )}
               </div>
-              <h1 className="font-bold">{profileData.name}</h1>
+              <h1 className="font-bold flex items-center gap-2">
+                {profileData.name}
+                {profileData.isVerified && (
+                  <span>
+                    <VerifiedIcon sx={{ width: "1rem", color: "#3B82F6" }} />
+                  </span>
+                )}
+              </h1>
               <h3 className="text-gray-500 mb-3">
                 @{profileData.email.split("@")[0]}
               </h3>
               <p>{profileData.bio}</p>
             </>
           )}
-          <div className="flex gap-3">
-            <p>
-              {followingCount} <span className="text-gray-500">Followings</span>
-            </p>
-            <p>
-              {followersCount} <span className="text-gray-500">Followers</span>
-            </p>
-          </div>
+          {profileData && 
+            <div className="flex gap-3">
+              <p>
+                {followingCount}{" "}
+                <span className="text-gray-500">Followings</span>
+              </p>
+              <p>
+                {followersCount}{" "}
+                <span className="text-gray-500">Followers</span>
+              </p>
+            </div>
+          }
         </div>
       </div>
       <OwnTweets />

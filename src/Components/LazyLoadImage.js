@@ -15,14 +15,14 @@ const LazyLoadImage = ({ imgURL, height, width }) => {
       }] h-[${aspectRatio<100? "20rem":"30rem"}] rounded-2xl overflow-hidden border-gray-800 border relative`}
     >
       <div
-        className={`absolute inset-0 bg-gray-950 animate-pulse transition-opacity duration-1000 ease-in-out ${
+        className={`bg-gray-950 animate-pulse transition-opacity duration-1000 ease-in-out ${
           loaded ? "opacity-0" : "opacity-100"
         }`}
       ></div>
       <img
         onLoad={handleImageLoad}
         src={imgURL}
-        className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-1000 ease-in-out ${
+        className={` object-cover w-full h-full transition-opacity duration-1000 ease-in-out ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
         alt=""

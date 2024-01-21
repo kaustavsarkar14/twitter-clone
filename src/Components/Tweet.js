@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import TweetStats from "./TweetStats";
 import SyncRoundedIcon from "@mui/icons-material/SyncRounded";
 import TweetMenu from "./TweetMenu";
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import LazyLoadImage from "./LazyLoadImage";
 import LoadProfileImage from "./LoadProfileImage";
-
 
 const Tweet = ({ tweetData }) => {
   return (
@@ -36,12 +35,14 @@ const Tweet = ({ tweetData }) => {
             )}
           </h2>
           <h3 className="">{tweetData.title}</h3>
-          {/* <img
-            src={tweetData.imageURL}
-            alt=""
-            className="md:w-[80%] w-[100%] rounded-2xl"
-          /> */}
-          <LazyLoadImage imgURL={tweetData.imageURL} height={tweetData.height} width={tweetData.width}/>
+
+          {tweetData.imageURL && (
+            <LazyLoadImage
+              imgURL={tweetData.imageURL}
+              height={tweetData.height}
+              width={tweetData.width}
+            />
+          )}
           <TweetStats tweetId={tweetData.id} tweetData={tweetData} />
         </div>
       </div>

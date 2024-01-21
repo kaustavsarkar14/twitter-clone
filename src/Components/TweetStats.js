@@ -54,7 +54,7 @@ const TweetStats = ({ tweetData, tweetId }) => {
       const docRef = await addDoc(collection(db, "posts"), {
         authorName: tweetData.authorName,
         authorPhotoURL: tweetData.authorPhotoURL,
-        authorUID: auth.currentUser.uid,
+        authorUID: tweetData.authorUID,
         imageURL: tweetData.imageURL,
         title: tweetData.title,
         height: tweetData.height,

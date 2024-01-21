@@ -26,7 +26,15 @@ export default function TweetMenu({ tweetData }) {
       toast.error("Post was not deleted");
     }
   };
-  const handleShare = () => {};
+  const handleShare = () => {
+    console.log(
+      tweetData.isRetweet
+        ? tweetData.retweeterUID == auth.currentUser.uid
+        : tweetData.authorUID == auth.currentUser.uid
+    );
+    console.log(tweetData.retweeterUID == auth.currentUser.uid);
+    console.log(auth.currentUser.uid);
+  };
   return (
     <div>
       <Toast />
@@ -54,7 +62,9 @@ export default function TweetMenu({ tweetData }) {
           horizontal: "left",
         }}
       >
-        {tweetData.authorUID == auth.currentUser.uid && (
+        {(tweetData.isRetweet
+          ? tweetData.retweeterUID == auth.currentUser.uid
+          : tweetData.authorUID == auth.currentUser.uid) && (
           <MenuItem onClick={handleDelete}>Delete</MenuItem>
         )}
         <MenuItem onClick={handleShare}>Share</MenuItem>
